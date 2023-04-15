@@ -23,6 +23,8 @@ SELECT
   SaleDateConverted
 FROM master.dbo.Houston
 
+
+
 -- Populate Property Address Data --
 
 SELECT
@@ -51,6 +53,8 @@ FROM master.dbo.Houston a
     ON a.ParcelID = b.ParcelID
     AND a.[UniqueID] <> b.[UniqueId]
 WHERE a.PropertyAddress IS NULL
+
+
 
 -- Breaking Out Address Into Individual Columns (Address, City, State) --
 -- One way of accomplishing task
@@ -91,7 +95,6 @@ SELECT
 FROM
     master.dbo.Houston;
 
-
 ALTER TABLE Houston
 ADD OwnerSplitAddress NVARCHAR(255);
 
@@ -122,6 +125,8 @@ SELECT
 FROM
     master.dbo.Houston;
 
+
+
 -- Change Y and N to Yes and No in 'SoldAsVacant'
 
 SELECT
@@ -150,6 +155,7 @@ SET SoldAsVacant = CASE SoldAsVacant
     END
 
 
+
 -- Remove Duplicates
 
 WITH ROW_NUMCTE AS (
@@ -172,6 +178,8 @@ SELECT *
 FROM ROW_NUMCTE
 WHERE ROW_NUM > 1
 ORDER BY PropertyAddress
+
+
 
 -- Delete Unused Columns
 
